@@ -10,11 +10,11 @@ import androidx.annotation.Nullable;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-    /** Ve. **/
-    private static final int DB_VERSION = 1;
-    /**  **/
+    /** Version of the database. **/
+    private static final int DB_VERSION = 3;
+    /** Name of the database. **/
     private static final String DB_NAME = "agenda.db";
-    /** **/
+    /** Name of the table of Contacts of the database. **/
     public static final String TABLE_CONTACTS = "t_contacts";
 
     public DbHelper(@Nullable Context context) {
@@ -24,10 +24,9 @@ public class DbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_CONTACTS + "(" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT NOT NULL," +
+                "name TEXT PRIMARY KEY NOT NULL," +
                 "telephone TEXT NOT NULL," +
-                "mail TEXT)");
+                "email TEXT)");
     }
 
     @Override
