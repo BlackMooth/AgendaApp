@@ -1,42 +1,36 @@
 package com.example.agendaapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.agendaapp.db.DbHelper;
+import com.example.agendaapp.adapters.ListContactsAdapter;
+import com.example.agendaapp.db.DbContacts;
+import com.example.agendaapp.entities.Contact;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnCreateDatabase;
+    RecyclerView recyclerViewContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btnCreateDatabase = findViewById(R.id.btnCreateDatabase);
+        recyclerViewContacts = findViewById(R.id.listContacts);
+        recyclerViewContacts.setLayoutManager(new LinearLayoutManager(this));
 
-        btnCreateDatabase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DbHelper dbHelper = new DbHelper(MainActivity.this);
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
+        DbContacts dbContacts = new DbContacts(MainActivity.this);
 
-                if (db != null) {
-                    Toast.makeText(MainActivity.this, "DATABASE CREATED", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "ERROR CREATING THE DATABASE", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        ListContactsAdapter adapter = new ListContactsAdapter(dbContacts.showContacts());
+        recyclerViewContacts.setAdapter(adapter);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
