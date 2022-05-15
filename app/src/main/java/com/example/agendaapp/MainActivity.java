@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewContacts;
-    ArrayList<Contact> listArrayContacts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewContacts.setLayoutManager(new LinearLayoutManager(this));
 
         DbContacts dbContacts = new DbContacts(MainActivity.this);
-
-        listArrayContacts = new ArrayList<>();
 
         ListContactsAdapter adapter = new ListContactsAdapter(dbContacts.showContacts());
         recyclerViewContacts.setAdapter(adapter);
