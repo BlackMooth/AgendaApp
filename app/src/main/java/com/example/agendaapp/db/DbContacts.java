@@ -60,4 +60,44 @@ public class DbContacts extends DbHelper {
 
         return listContacts;
     }
+
+    public Contact viewContact(String name) {
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        Contact contact = null;
+        Cursor cursorContacts = null;
+
+        cursorContacts = db.rawQuery("SELECT * FROM " + TABLE_CONTACTS + " WHERE name = '"+name+"' LIMIT 1", null);
+
+        if (cursorContacts.moveToFirst()) {
+            contact = new Contact();
+            contact.setName(cursorContacts.getString(0));
+            contact.setTelephone(cursorContacts.getString(1));
+            contact.setEmail(cursorContacts.getString(2));
+        }
+
+        cursorContacts.close();
+
+        return contact;
+    }
+
+    public boolean editContact(String originalName, String name, String telephone, String email) {
+        boolean contactUpdated = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE " + TABLE_CONTACTS + " SET name = '" + name + "', telephone = '" + telephone + "', email = '" + email + "' WHERE name='" + originalName + "' ");
+            contactUpdated = true;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            db.close();
+        }
+
+        return contactUpdated;
+    }
+
 }

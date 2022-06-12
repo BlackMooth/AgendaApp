@@ -4,6 +4,6 @@
     <string name="hint_telephone">Telephone:</string>
     <string name="hint_email">E-mail:</string>
     <string name="btn_save">Save register:</string>
-    
+
     <string name="menu_new">New Registry</string>
 </resources>

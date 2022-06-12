@@ -1,5 +1,7 @@
 package com.example.agendaapp.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import androidx.annotation.XmlRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agendaapp.R;
+import com.example.agendaapp.ViewActivity;
 import com.example.agendaapp.entities.Contact;
 
 import java.util.ArrayList;
@@ -53,6 +56,16 @@ public class ListContactsAdapter extends RecyclerView.Adapter<ListContactsAdapte
             textViewName = itemView.findViewById(R.id.textViewName);
             textViewTelephone = itemView.findViewById(R.id.textViewTelephone);
             textViewEmail = itemView.findViewById(R.id.textViewEmail);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, ViewActivity.class);
+                    intent.putExtra("Name", listContacts.get(getAdapterPosition()).getName());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

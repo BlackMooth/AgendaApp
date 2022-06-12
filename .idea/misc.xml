@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/danie/AndroidStudioProjects/AgendaApp/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/drawable/ic_contact.xml" value="0.2703125" />
+        <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/layout/activity_new.xml" value="0.264" />
+        <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/layout/activity_view.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/layout/list_item_contact.xml" value="0.264" />
         <entry key="..\:/Users/danie/repos/agenda/app/src/main/res/menu/menu_main.xml" value="0.25416666666666665" />
       </map>

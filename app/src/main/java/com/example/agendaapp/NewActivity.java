@@ -36,7 +36,7 @@ public class NewActivity extends AppCompatActivity {
 
                 if (id > 0) {
                     Toast.makeText(NewActivity.this, "REGISTRY SAVED", Toast.LENGTH_SHORT).show();
-                    clean();
+                clean();
                 } else {
                     Toast.makeText(NewActivity.this, "ERROR SAVING THE REGISTRY", Toast.LENGTH_SHORT).show();
                 }
