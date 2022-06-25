@@ -100,4 +100,22 @@ public class DbContacts extends DbHelper {
         return contactUpdated;
     }
 
+    public boolean deleteContact(String name) {
+        boolean contactDeleted = false;
+
+        DbHelper dbHelper = new DbHelper(context);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("DELETE FROM " + TABLE_CONTACTS + " WHERE name = '" + name + "'");
+            contactDeleted = true;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            db.close();
+        }
+
+        return contactDeleted;
+    }
+
 }

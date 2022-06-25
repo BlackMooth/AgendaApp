@@ -1,7 +1,9 @@
 package com.example.agendaapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
@@ -19,7 +21,9 @@ public class ViewActivity extends AppCompatActivity {
     EditText txtTelephone;
     EditText txtEmail;
     Button btnSave;
+
     FloatingActionButton fabEdit;
+    FloatingActionButton fabDelete;
 
     Contact contact;
     String name = null;
@@ -33,7 +37,9 @@ public class ViewActivity extends AppCompatActivity {
         txtTelephone = findViewById(R.id.txtTelephone);
         txtEmail = findViewById(R.id.txtEmail);
         btnSave = findViewById(R.id.btnSave);
+
         fabEdit = findViewById(R.id.fabEdit);
+        fabDelete = findViewById(R.id.fabDelete);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -69,5 +75,32 @@ public class ViewActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        fabDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ViewActivity.this);
+                builder.setMessage("Are you sure you want to delete this contact?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (dbContacts.deleteContact(name)) {
+                                    viewMainActivity();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+            }
+        });
+    }
+
+    private void viewMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

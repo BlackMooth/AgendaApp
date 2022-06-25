@@ -36,6 +36,12 @@ public class EditActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         fabEdit = findViewById(R.id.fabEdit);
 
+        // Disable the visibility of this buttons
+        FloatingActionButton fabEdit = findViewById(R.id.fabEdit);
+        FloatingActionButton fabDelete = findViewById(R.id.fabDelete);
+        fabEdit.setVisibility(View.INVISIBLE);
+        fabDelete.setVisibility(View.INVISIBLE);
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
 
